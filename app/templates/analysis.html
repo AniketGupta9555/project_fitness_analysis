@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Analysis Results</title>
+    <link rel="stylesheet" href="/static/css/styles.css">
+    <script src="/static/js/script.js" defer></script>
+    <style>
+        body {
+            background: linear-gradient(135deg, #4caf50, #00c853);
+            color: white;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            padding: 20px;
+            min-height: 100vh;
+            font-family: 'Roboto', sans-serif;
+        }
+
+        h1 {
+            font-size: 2.5rem;
+            margin-bottom: 20px;
+            animation: fadeIn 1.5s ease-in-out;
+        }
+
+        .btn-group {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 15px;
+            margin-bottom: 40px;
+        }
+
+        .btn-group a {
+            display: inline-block;
+            padding: 15px 30px;
+            font-size: 1.2rem;
+            color: white;
+            background: linear-gradient(135deg, #007bff, #1e90ff);
+            border-radius: 25px;
+            text-decoration: none;
+            transition: transform 0.3s, box-shadow 0.3s;
+        }
+
+        .btn-group a:hover {
+            transform: scale(1.05);
+            box-shadow: 4px 6px 15px rgba(0, 0, 0, 0.2);
+        }
+
+        .analysis-image {
+            width: 90%;
+            max-width: 800px;
+            border-radius: 15px;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
+            margin-top: 20px;
+        }
+
+        .back-btn {
+            display: inline-block;
+            margin-top: 30px;
+            padding: 12px 25px;
+            font-size: 1rem;
+            color: white;
+            background: linear-gradient(135deg, #ff9800, #ff5722);
+            border-radius: 25px;
+            text-decoration: none;
+            transition: transform 0.3s, box-shadow 0.3s;
+        }
+
+        .back-btn:hover {
+            transform: scale(1.05);
+            box-shadow: 4px 6px 15px rgba(0, 0, 0, 0.2);
+        }
+
+        footer {
+            margin-top: auto;
+            text-align: center;
+            font-size: 0.8rem;
+        }
+
+        /* Mobile Responsiveness */
+        @media (max-width: 768px) {
+            h1 {
+                font-size: 2rem;
+            }
+
+            .btn-group a {
+                font-size: 1rem;
+                padding: 12px 20px;
+            }
+
+            .analysis-image {
+                width: 100%;
+            }
+        }
+    </style>
+</head>
+<body>
+    <h1>Choose Your Analysis</h1>
+    <div class="btn-group">
+        <a href="/view_analysis/calories_distribution">📊 Calories Distribution</a>
+        <a href="/view_analysis/correlation_heatmap">📈 Correlation Heatmap</a>
+        <a href="/view_analysis/workout_comparison">💪 Workout Comparison</a>
+        <a href="/view_analysis/bmi_vs_fat">🧬 BMI vs. Fat Percentage</a>
+        <a href="/view_analysis/water_intake_analysis">📅 Water Intake Analysis</a>
+    </div>
+
+    {% if image_path %}
+        <h2>Analysis Result</h2>
+        <img src="image_path" alt="Analysis Result" class="analysis-image">
+        <a href="/analysis" class="back-btn">🔙 Back to Analysis</a>
+    {% else %}
+        <p>No analysis available. Please choose an analysis from above.</p>
+    {% endif %}
+
+    <footer>&copy; 2024 Fitness Analysis App. All Rights Reserved.</footer>
+</body>
+    
+</html>

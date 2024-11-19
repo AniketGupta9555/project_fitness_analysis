@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Apply Filters</title>
+    <link rel="stylesheet" href="/static/css/styles.css">
+    <script src="/static/js/script.js" defer></script>
+    <style>
+        /* Page Styling */
+        body {
+            background: linear-gradient(135deg, #1e90ff, #00c9ff);
+            color: white;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            padding: 20px;
+            min-height: 100vh;
+        }
+
+        h1 {
+            font-size: 2.5rem;
+            margin-bottom: 20px;
+            animation: fadeIn 1.5s ease-in-out;
+        }
+
+        /* Form Styling */
+        form {
+            background: rgba(255, 255, 255, 0.1);
+            padding: 20px;
+            border-radius: 15px;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+            width: 100%;
+            max-width: 500px;
+            animation: slideInUp 1.5s ease-in-out;
+        }
+
+        form label {
+            display: block;
+            margin-bottom: 10px;
+            font-weight: bold;
+        }
+
+        form select {
+            width: 100%;
+            padding: 12px;
+            margin-bottom: 15px;
+            border: 1px solid #ccc;
+            border-radius: 10px;
+            font-size: 1rem;
+        }
+
+        form button {
+            width: 100%;
+            padding: 12px;
+            font-size: 1.1rem;
+            color: white;
+            background: linear-gradient(135deg, #28a745, #218838);
+            border: none;
+            border-radius: 25px;
+            cursor: pointer;
+            transition: transform 0.3s, box-shadow 0.3s;
+        }
+
+        form button:hover {
+            transform: scale(1.05);
+            box-shadow: 4px 6px 20px rgba(0, 0, 0, 0.3);
+        }
+
+        /* Table Styling */
+        table {
+            width: 100%;
+            max-width: 800px;
+            margin-top: 20px;
+            border-collapse: collapse;
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 15px;
+            overflow: hidden;
+        }
+
+        table th, table td {
+            padding: 12px;
+            text-align: left;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.2);
+        }
+
+        table th {
+            background: rgba(0, 0, 0, 0.5);
+            color: white;
+        }
+
+        table tr:hover {
+            background: rgba(0, 0, 0, 0.1);
+        }
+
+        footer {
+            margin-top: 20px;
+            text-align: center;
+        }
+    </style>
+</head>
+<body>
+    <h1>Filter Data</h1>
+    <form method="POST">
+        <label for="Workout_Type">Workout Type:</label>
+        <!-- Dropdown for Workout Types -->
+        <select name="Workout_Type" id="Workout_Type">
+            <option value="">Select a Workout Type</option>
+            <option value="Cardio">Cardio</option>
+            <option value="Strength">Strength</option>
+            <option value="Yoga">Yoga</option>
+            <option value="HIIT">HIIT</option>
+        </select>
+
+        <button type="submit">Apply Filter</button>
+    </form>
+
+    {% if data is not none %}
+    <h2>Filtered Data</h2>
+    <table>
+        <tr>
+            {% for col in data.columns %}
+            <th>{{ col }}</th>
+            {% endfor %}
+        </tr>
+        {% for row in data.values %}
+        <tr>
+            {% for item in row %}
+            <td>{{ item }}</td>
+            {% endfor %}
+        </tr>
+        {% endfor %}
+    </table>
+    {% endif %}
+
+    <footer>&copy; 2024 Fitness Analysis App. All Rights Reserved.</footer>
+</body>
+</html>
